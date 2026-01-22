@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Healthcare Blue Palette */
+    --background: 210 33% 99%;
+    --foreground: 215 32% 17%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 32% 17%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 32% 17%;
+
+    /* Primary - Deep Healthcare Blue */
+    --primary: 210 78% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Light Blue */
+    --secondary: 200 65% 96%;
+    --secondary-foreground: 210 78% 35%;
+
+    /* Muted */
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Accent - Teal */
+    --accent: 175 60% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 210 78% 35%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(210 78% 35%) 0%, hsl(200 70% 45%) 50%, hsl(175 60% 40%) 100%);
+    --hero-overlay: linear-gradient(180deg, hsla(210, 78%, 20%, 0.85) 0%, hsla(210, 78%, 30%, 0.7) 100%);
+    --section-gradient: linear-gradient(180deg, hsl(210 33% 99%) 0%, hsl(200 65% 98%) 100%);
+    --card-shadow: 0 4px 24px -4px hsla(210, 78%, 35%, 0.1);
+    --card-shadow-hover: 0 8px 32px -4px hsla(210, 78%, 35%, 0.15);
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 210 78% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 200 65% 96%;
+    --sidebar-accent-foreground: 210 78% 35%;
+    --sidebar-border: 210 20% 90%;
+    --sidebar-ring: 210 78% 35%;
+  }
+
+  .dark {
+    --background: 215 32% 10%;
+    --foreground: 210 20% 98%;
+
+    --card: 215 32% 14%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 215 32% 14%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 200 70% 50%;
+    --primary-foreground: 215 32% 10%;
+
+    --secondary: 215 25% 20%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 215 25% 20%;
+    --muted-foreground: 210 15% 65%;
+
+    --accent: 175 60% 45%;
+    --accent-foreground: 215 32% 10%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 25% 22%;
+    --input: 215 25% 22%;
+    --ring: 200 70% 50%;
+
+    --sidebar-background: 215 32% 12%;
+    --sidebar-foreground: 210 20% 98%;
+    --sidebar-primary: 200 70% 50%;
+    --sidebar-primary-foreground: 215 32% 10%;
+    --sidebar-accent: 215 25% 18%;
+    --sidebar-accent-foreground: 210 20% 98%;
+    --sidebar-border: 215 25% 22%;
+    --sidebar-ring: 200 70% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .section-fade-in {
+    @apply opacity-0 translate-y-6;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .section-fade-in-delay-1 {
+    animation-delay: 0.1s;
+  }
+
+  .section-fade-in-delay-2 {
+    animation-delay: 0.2s;
+  }
+
+  .section-fade-in-delay-3 {
+    animation-delay: 0.3s;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .hover-lift:hover {
+    @apply -translate-y-1;
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .nav-link {
+    @apply relative text-foreground/80 transition-colors duration-200;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .nav-link:hover {
+    @apply text-primary;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .gradient-text {
+    background: var(--hero-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
